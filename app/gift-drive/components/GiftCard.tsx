@@ -8,12 +8,14 @@ import { GiftRecipient } from '../data/giftRecipients';
 interface GiftCardProps {
   recipient: GiftRecipient;
   index: number;
+  onClick?: () => void;
 }
 
-export default function GiftCard({ recipient, index }: GiftCardProps) {
+export default function GiftCard({ recipient, index, onClick }: GiftCardProps) {
   const [isLoading, setIsLoading] = useState(false);
 
-  const handlePurchase = async () => {
+  const handlePurchase = async (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card click from triggering
     setIsLoading(true);
     try {
       const response = await fetch('/api/checkout', {
@@ -47,7 +49,8 @@ export default function GiftCard({ recipient, index }: GiftCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.05, duration: 0.4 }}
-      className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-fg-teal/30 flex flex-col h-full"
+      onClick={onClick}
+      className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-fg-teal/30 flex flex-col h-full cursor-pointer"
     >
       {/* Card Header */}
       <div className="p-4 pb-3">

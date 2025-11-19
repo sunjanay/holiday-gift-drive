@@ -1,12 +1,16 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Gift } from 'lucide-react';
 import GiftCard from './GiftCard';
+import GiftModal from './GiftModal';
+import { GiftRecipient } from '../data/giftRecipients';
 import { useGiftRecipients } from '../hooks/useGiftRecipients';
 
 export default function BrowseGifts() {
   const { recipients, loading, usingStaticData } = useGiftRecipients();
+  const [selectedRecipient, setSelectedRecipient] = useState<GiftRecipient | null>(null);
 
   return (
     <section
@@ -48,11 +52,19 @@ export default function BrowseGifts() {
                 key={recipient.id}
                 recipient={recipient}
                 index={index}
+                onClick={() => setSelectedRecipient(recipient)}
               />
             ))}
           </div>
         )}
       </div>
+
+      {/* Modal */}
+      <GiftModal
+        recipient={selectedRecipient}
+        onClose={() => setSelectedRecipient(null)}
+        onViewAll={() => {}}
+      />
     </section>
   );
 }
