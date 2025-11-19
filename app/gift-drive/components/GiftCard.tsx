@@ -60,7 +60,7 @@ export default function GiftCard({ recipient, index }: GiftCardProps) {
               <h3 className="text-lg font-bold text-fg-navy group-hover:text-fg-teal transition-colors">
                 {recipient.name}
                 {recipient.age && (
-                  <span className="text-gray-400 text-sm ml-1.5 font-normal">
+                  <span className="text-gray-500 text-sm ml-1.5 font-normal">
                     {recipient.age}
                   </span>
                 )}
