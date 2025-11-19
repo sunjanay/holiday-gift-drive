@@ -24,6 +24,10 @@ export interface Database {
           position_left: string
           purchased: boolean
           purchased_at: string | null
+          stripe_session_id: string | null
+          donor_email: string | null
+          amount_paid: number | null
+          fee_covered: boolean | null
           created_at: string
           updated_at: string
         }
@@ -41,6 +45,10 @@ export interface Database {
           position_left: string
           purchased?: boolean
           purchased_at?: string | null
+          stripe_session_id?: string | null
+          donor_email?: string | null
+          amount_paid?: number | null
+          fee_covered?: boolean | null
           created_at?: string
           updated_at?: string
         }
@@ -58,6 +66,10 @@ export interface Database {
           position_left?: string
           purchased?: boolean
           purchased_at?: string | null
+          stripe_session_id?: string | null
+          donor_email?: string | null
+          amount_paid?: number | null
+          fee_covered?: boolean | null
           created_at?: string
           updated_at?: string
         }

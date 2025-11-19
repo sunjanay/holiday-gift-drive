@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 import Stripe from 'stripe';
+import { supabaseAdmin, isSupabaseServerConfigured } from '@/lib/supabase/server';
 
 export async function POST(request: NextRequest) {
   const body = await request.text();
@@ -55,21 +56,29 @@ export async function POST(request: NextRequest) {
       sessionId: session.id,
     });
 
-    // TODO: Update Supabase when connected
-    // For now, we'll handle this with the static data approach
-    // In production, this would update the database:
-    //
-    // await supabase
-    //   .from('gift_recipients')
-    //   .update({
-    //     purchased: true,
-    //     purchased_at: new Date().toISOString(),
-    //     stripe_session_id: session.id,
-    //     donor_email: donorEmail || null,
-    //     amount_paid: amountPaid,
-    //     fee_covered: feeCovered,
-    //   })
-    //   .eq('id', giftId);
+    // Update Supabase to mark gift as purchased
+    if (isSupabaseServerConfigured && supabaseAdmin) {
+      const { error: updateError } = await supabaseAdmin
+        .from('gift_recipients')
+        .update({
+          purchased: true,
+          purchased_at: new Date().toISOString(),
+          stripe_session_id: session.id,
+          donor_email: donorEmail || null,
+          amount_paid: amountPaid,
+          fee_covered: feeCovered,
+        })
+        .eq('id', giftId);
+
+      if (updateError) {
+        console.error('Failed to update gift in Supabase:', updateError);
+        // Don't return error - payment was successful, just logging failed
+      } else {
+        console.log(`Gift ${giftId} marked as purchased in Supabase`);
+      }
+    } else {
+      console.warn('Supabase not configured - gift purchase not tracked in database');
+    }
   }
 
   return NextResponse.json({ received: true });
