@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Gift, ShoppingCart } from 'lucide-react';
 import { GiftRecipient } from '../data/giftRecipients';
@@ -12,37 +11,6 @@ interface GiftCardProps {
 }
 
 export default function GiftCard({ recipient, index, onClick }: GiftCardProps) {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handlePurchase = async (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent card click from triggering
-    setIsLoading(true);
-    try {
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          giftId: recipient.id,
-          coverFee: false,
-          donorEmail: null,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to create checkout session');
-      }
-
-      window.location.href = data.checkoutUrl;
-    } catch (error) {
-      console.error('Checkout error:', error);
-      alert('Failed to start checkout. Please try again.');
-      setIsLoading(false);
-    }
-  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -99,12 +67,11 @@ export default function GiftCard({ recipient, index, onClick }: GiftCardProps) {
           </div>
         ) : (
           <button
-            onClick={handlePurchase}
-            disabled={isLoading}
-            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-fg-teal to-fg-accent-teal text-white px-4 py-2.5 rounded-lg font-bold text-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            onClick={onClick}
+            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-fg-teal to-fg-accent-teal text-white px-4 py-2.5 rounded-lg font-bold text-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-200"
           >
             <ShoppingCart className="w-3.5 h-3.5" />
-            <span>{isLoading ? 'Processing...' : `Sponsor Gift - $${recipient.giftPrice}`}</span>
+            <span>Sponsor Gift - ${recipient.giftPrice}</span>
           </button>
         )}
       </div>
