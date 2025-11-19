@@ -101,12 +101,12 @@ export default function GiftModal({ recipient, onClose, onViewAll }: GiftModalPr
           {/* Modal */}
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative"
+              className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative border border-gray-100"
               role="dialog"
               aria-labelledby="modal-title"
               aria-describedby="modal-description"
@@ -153,13 +153,13 @@ export default function GiftModal({ recipient, onClose, onViewAll }: GiftModalPr
                 </div>
 
                 {/* Gift Details */}
-                <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-6 mb-6 border-2 border-gray-100">
+                <div className="bg-gradient-to-br from-fg-light-blue/30 to-white rounded-2xl p-6 mb-6 border border-fg-teal/20">
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <div>
                       <h3 className="text-xl font-bold text-fg-navy mb-2">
                         {recipient.giftTitle}
                       </h3>
-                      <p className="text-gray-600">
+                      <p className="text-gray-600 leading-relaxed">
                         {recipient.giftDescription}
                       </p>
                     </div>
@@ -167,7 +167,7 @@ export default function GiftModal({ recipient, onClose, onViewAll }: GiftModalPr
 
                   {/* Price */}
                   <div className="flex items-center gap-2">
-                    <span className="text-3xl font-bold text-fg-teal">
+                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-fg-teal to-fg-accent-teal">
                       ${recipient.giftPrice}
                     </span>
                   </div>
@@ -176,10 +176,10 @@ export default function GiftModal({ recipient, onClose, onViewAll }: GiftModalPr
                 {/* Actions */}
                 <div className="space-y-4">
                   {recipient.purchased ? (
-                    /* Already Purchased */
-                    <div className="bg-gray-100 text-gray-600 px-8 py-4 rounded-lg text-center border-2 border-gray-200">
-                      <p className="font-semibold text-lg mb-1">This gift has been purchased</p>
-                      <p className="text-sm">Please choose another gift to help our community</p>
+                    /* Already Sponsored */
+                    <div className="bg-gray-100 text-gray-500 px-8 py-4 rounded-xl text-center border border-gray-200">
+                      <p className="font-semibold text-lg mb-1">This gift has been sponsored</p>
+                      <p className="text-sm">Please choose another gift to support our community</p>
                     </div>
                   ) : (
                     /* Available to Purchase */
@@ -241,27 +241,27 @@ export default function GiftModal({ recipient, onClose, onViewAll }: GiftModalPr
                       <button
                         onClick={handlePurchase}
                         disabled={isLoading || (shareEmail && !email)}
-                        className="flex items-center justify-center gap-2 w-full bg-fg-teal text-white px-8 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-fg-teal to-fg-accent-teal text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                       >
                         <CheckCircle className="w-5 h-5" />
                         <span>
                           {isLoading
                             ? 'Processing...'
-                            : `Purchase This Gift - $${total.toFixed(2)}`}
+                            : `Sponsor This Gift - $${total.toFixed(2)}`}
                         </span>
                       </button>
                     </>
                   )}
 
-                  {/* View All Gifts - Always Visible */}
+                  {/* Browse All Community Member Wishes */}
                   <button
                     onClick={() => {
                       onClose();
                       onViewAll();
                     }}
-                    className="flex items-center justify-center gap-2 w-full bg-white text-fg-teal px-8 py-3 rounded-lg font-semibold border-2 border-fg-teal hover:bg-fg-light-blue transition-colors"
+                    className="flex items-center justify-center gap-2 w-full bg-white text-fg-teal px-8 py-3.5 rounded-xl font-semibold border-2 border-fg-teal/30 hover:border-fg-teal hover:bg-fg-light-blue/50 transition-all duration-200"
                   >
-                    <span>View All Gifts</span>
+                    <span>Browse All Community Member Wishes</span>
                     <ChevronDown className="w-5 h-5" />
                   </button>
                 </div>

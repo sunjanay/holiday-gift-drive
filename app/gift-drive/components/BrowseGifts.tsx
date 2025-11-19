@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Gift } from 'lucide-react';
 import GiftCard from './GiftCard';
 import { useGiftRecipients } from '../hooks/useGiftRecipients';
 
@@ -10,7 +11,7 @@ export default function BrowseGifts() {
   return (
     <section
       id="browse-gifts"
-      className="w-full bg-gradient-to-b from-white to-gray-50 py-20 px-4"
+      className="w-full bg-gradient-to-b from-white via-gray-50/50 to-fg-light-blue/20 py-12 md:py-16 px-4"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
@@ -19,13 +20,18 @@ export default function BrowseGifts() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-fg-navy mb-4">
-            Browse All Gifts
+          <div className="inline-flex items-center gap-2 bg-fg-light-blue/50 px-3 py-1.5 rounded-full mb-4">
+            <Gift className="w-3.5 h-3.5 text-fg-teal" />
+            <span className="text-xs font-semibold text-fg-navy">All Community Wishes</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-fg-navy mb-3 tracking-tight">
+            Browse All{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-fg-teal to-fg-accent-teal">Gift Wishes</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Prefer to see everything at once? Here's the full list of gift wishes from our community members.
+          <p className="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Prefer to see everything at once? Here&apos;s the full list of gift wishes from our community members.
           </p>
         </motion.div>
 

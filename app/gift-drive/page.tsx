@@ -51,7 +51,7 @@ export default function GiftDrivePage() {
           {/* Instructions */}
           <div className="inline-block bg-white px-8 py-4 rounded-xl shadow-lg border-2 border-fg-teal">
             <p className="text-lg font-semibold text-fg-navy">
-              🎄 Click any ornament to learn more and purchase a gift 🎁
+              Click any ornament to see gift details and sponsor a community member
             </p>
           </div>
         </div>

@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Foster Greatness Gingerbread House Contest 2025",
-  description: "Join us in bringing 100 current and former foster youth together this holiday season for our virtual Gingerbread House Contest on December 19th.",
+  title: "Holiday Gift Drive 2025 | Foster Greatness",
+  description: "Help make the holidays special for Foster Greatness community members. Choose a gift from our interactive Christmas tree and create connection through giving.",
   openGraph: {
-    title: "Foster Greatness Gingerbread House Contest 2025",
-    description: "Join us in bringing 100 current and former foster youth together this holiday season for our virtual Gingerbread House Contest on December 19th.",
+    title: "Holiday Gift Drive 2025 | Foster Greatness",
+    description: "Help make the holidays special for Foster Greatness community members. Choose a gift and create connection through giving.",
     type: "website",
   },
 };
