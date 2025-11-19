@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import InteractiveTree from './gift-drive/components/InteractiveTree';
-import BrowseGifts from './gift-drive/components/BrowseGifts';
+import InteractiveTree from './components/InteractiveTree';
+import BrowseGifts from './components/BrowseGifts';
 import { Sparkles } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -51,7 +51,7 @@ export default function GiftDrivePage() {
           {/* Instructions */}
           <div className="inline-block bg-white px-8 py-4 rounded-xl shadow-lg border-2 border-fg-teal">
             <p className="text-lg font-semibold text-fg-navy">
-              Click any ornament to learn more and purchase a gift
+              🎄 Click any ornament to learn more and purchase a gift 🎁
             </p>
           </div>
         </div>
