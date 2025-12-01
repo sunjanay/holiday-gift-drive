@@ -69,5 +69,17 @@ export const giftRecipients: GiftRecipient[] = [
     ornamentColor: 'green',
     purchased: false,
     position: { top: '65%', left: '54%' }
+  },
+  {
+    id: '5',
+    name: 'Taylor',
+    story: 'Taylor and her miracle baby will be spending their first Christmas together. This LEGO kit is something special they can build and bond over during the holiday season.',
+    giftTitle: 'LEGO Fortnite Peely & Sparkplug\'s Camp',
+    giftDescription: 'LEGO Fortnite building set with Peely, Sparkplug figures - a fun activity for Taylor and her baby to enjoy together',
+    giftPrice: 23,
+    amazonWishlistUrl: 'https://www.amazon.com/dp/B0D5GLJPYQ',
+    ornamentColor: 'silver',
+    purchased: false,
+    position: { top: '45%', left: '35%' }
   }
 ];
