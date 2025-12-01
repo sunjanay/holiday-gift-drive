@@ -87,13 +87,20 @@ export default function InteractiveTree() {
             )}
           </div>
 
-          {/* Row 3: 1 ornament (bottom center) */}
-          <div className="flex justify-center">
+          {/* Row 3: 2 ornaments */}
+          <div className="flex justify-center gap-12">
             {recipients[3] && (
               <Ornament
                 key={recipients[3].id}
                 recipient={recipients[3]}
                 onClick={() => setSelectedRecipient(recipients[3])}
+              />
+            )}
+            {recipients[4] && (
+              <Ornament
+                key={recipients[4].id}
+                recipient={recipients[4]}
+                onClick={() => setSelectedRecipient(recipients[4])}
               />
             )}
           </div>
