@@ -71,8 +71,9 @@ export default function GiftModal({ recipient, onClose, onViewAll }: GiftModalPr
         throw new Error(data.error || 'Failed to create checkout session');
       }
 
-      // Redirect to Stripe Checkout
-      window.location.href = data.checkoutUrl;
+      // Open Stripe Checkout in new tab (works better when embedded in iframes)
+      window.open(data.checkoutUrl, '_blank');
+      setIsLoading(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
       setIsLoading(false);
